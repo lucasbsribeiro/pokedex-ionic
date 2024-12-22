@@ -1,17 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <img src="../../assets/icon/pokedex.png" style="padding: 30px">
+  </ion-card>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <!-- Verifica se a lista está vazia -->
+        <ion-item *ngIf="pokemonList.length === 0" style="margin: 20px; text-align: center;">
+          <ion-label><h2>NÃO TEM POKEMON</h2></ion-label>
+        </ion-item>
+
+        <!-- Itera sobre os Pokémons da lista -->
+        <ion-item (click)="openPokemonDetail(pokemon)" *ngFor="let pokemon of pokemonList" style="margin: 20px;">
+          <ion-thumbnail slot="start">
+            <img [src]="pokemon.sprites.front_default" style="border: 2px solid yellow; background-color: white">
+          </ion-thumbnail>
+
+          <ion-label><h1>{{ pokemon.name }}</h1></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
